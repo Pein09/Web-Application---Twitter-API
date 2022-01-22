@@ -3,11 +3,11 @@
 //Ne conectam la API Twitter din care vom putea sa executam comenzi
 //npm install twit
 
-const Twit = require ('twit')  
+import Twit from 'twit'  
 //biblioteca js care ne lasa sa comunicam cu twitter
 //npm install twit/node/open/franc/twitter
-const node = require('node-notifier')
-const open = require ('open')
+import node from 'node-notifier'
+import open from 'open'
 //import franc from 'franc';
 
 //am solicitat acces la cont developer de la Twitter si mi-au dat aceste elemente pentru a ma putea conecta la api

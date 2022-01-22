@@ -1,5 +1,7 @@
-const needle = require('needle')//
-const config = require('dotenv').config()
+import needle from 'needle'//
+
+import confing from 'dotenv'
+//const config = require('dotenv').config()
 const TOKEN = process.env.TWITTER_BEARER_TOKEN
 
 const rulesURL = 'https://api.twitter.com/2/tweets/search/stream/rules'
@@ -7,7 +9,7 @@ const streamURL = 'https://api.twitter.com/2/tweets/search/stream?tweet.fields=p
 //ne da doar idul si textul unui tweet, dar putem face un query "?" tweet.field si alegem alt 
 //in cazul nostru sa ne arate autorul tweetului
 
-const rules = [{ value: '#elrond' }] //aray care tine flagul pe care il caut eu
+const rules = [{ value: 'elrond' }] //aray care tine flagul pe care il caut eu
 //imi da tweeturile care contin elrond si face un stream cu ele
 
 //facem 3 functii, get, set si delete
@@ -86,6 +88,7 @@ async function setRules(){
 };
 
     (async () =>{
+       let currentRules
         try {
         //get a stream rules
         currentRules = await getRules()
