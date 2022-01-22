@@ -5,6 +5,25 @@ import "./sync.js";
 import {router} from "../server-init.js";
 import { sequelizeOperationsAPI } from "./operations-api.js";
 
+import Twit from 'twit'  
+//biblioteca js care ne lasa sa comunicam cu twitter
+//npm install twit/node/open/franc/twitter
+//import franc from 'franc';
+
+//am solicitat acces la cont developer de la Twitter si mi-au dat aceste elemente pentru a ma putea conecta la api
+const apikey = 'ONo6NnV9P53y0kb6rxi9P0Zn1'
+const apiSecretKey = 'SThYqRvvj9BTdbAcASF16e2f14l1LaOnxAUbIAIC47ZASvBkLC'
+const accessToken = '1472150608744529920-KnjyTk7tVn0Ri8gwHpPE24DEn6Kc1r'
+const accessTokenSecret = '3yROs5aTb0G9ETfnPO2ZkuOX3M4rICUAuA2VRvz6coRha'
+
+//construim un obiect Twit - realizeaza o conexiune la Twitter API
+var T = new Twit({
+    consumer_key: apikey,
+    consumer_secret: apiSecretKey,
+    access_token: accessToken,
+    access_token_secret: accessTokenSecret,
+});
+
 
 router.route("/sequelize/pagina").get(async function getSequelizePagina(_ , response){
 
@@ -57,3 +76,14 @@ router.route("/sequelize/PaginaWithTweets/:tweetId").get(async function getPagin
 
 
 });
+
+
+router.route("/tweets-from-api").get(async function getTweetesFromApi(_, response) {
+    var params =  {
+        q: 'elrond since:2020-12-01',
+        count: 25 }
+    var result ;
+     await T.get('search/tweets', params).then((res)=>result = res);
+      
+      response.status(200).json(result);
+})
