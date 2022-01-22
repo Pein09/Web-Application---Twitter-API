@@ -12,8 +12,8 @@ const sequelizeConnection = new Sequelize(
     );
 
 
-    export const Pagina = sequelizeConnection.define("Pagina", {
-        PaginaId: {
+    export const Page = sequelizeConnection.define("Page", {
+        PageId: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
             primaryKey: true,
@@ -50,8 +50,8 @@ const sequelizeConnection = new Sequelize(
     });
 
     //14. one to many intre produse si comenzi
-Pagina.hasMany(Tweets, {
-    foreignKey: "PaginaId",
+Page.hasMany(Tweets, {
+    foreignKey: "PageId",
     onDelete: "CASCADE",
     foreignKeyConstraint: true,
 });

@@ -35,10 +35,10 @@ catch(err){
 async function executeInitialDatabasePopulation(){
     try { 
      await Pagina.create({
-         Title: "Title from code",
-         Followers: 23,
-         City: "City from code",
-         Description: "Description from code",
+         Title: "Elrond Romania",
+         Followers: 1950421,
+         City: "Sibiu",
+         Description: "Official Page of Elrond Romania",
      });  
      await Pagina.create({
          Title: "Title from code 2",
@@ -77,7 +77,16 @@ async function getPagina(){
         console.log(err);
     }
 }
+async function getTweet(){
+    try{
 
+        return await Tweets.findAll();
+
+    }
+    catch(err) {
+        console.log(err);
+    }
+}
 
 async function createPagina(pagina){
     try{
@@ -141,6 +150,7 @@ async function getPaginaWithTweetsBy(tweetId){
 export const sequelizeOperationsAPI = {
     init: sequelizeInit,
     getPagina: getPagina,
+    getTweet: getTweet,
     createPagina: createPagina,
     deletePagina: deletePagina,
     updatePagina:updatePagina,

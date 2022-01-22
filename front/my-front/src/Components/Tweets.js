@@ -1,64 +1,51 @@
 import { Fragment, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { CircularProgress } from '@material-ui/core';
 
-function Tweets() {
-    const [TweetsData, setTweetsData] = useState({
-        data: {},
-        loading: false,
-        loaded: false,
-    });
-
-    async function fetchTweets() {
-        setTweetsData(function setState(prevState) {
-            return { ...prevState, loading: true };
-        });
+import { Button } from '@material-ui/core';
+import InfoIcon from "@material-ui/icons/Info";
+import {useNavigate} from "react-router-dom";
 
 
-        try {
-            const response = await fetch("http://www.splashbase.co/api/v1/images/latest");
+function Pages() {
+   const [data, setData] = useState([]);
+   const navigate = useNavigate();
 
-            const data = await response.json(); //am transformat fluxu nostru de date intr un fisier de tip json
+    useEffect(() =>{
+        async function fetchData(){
+            try{
 
-            setTweetsData({ data: data, loading: false, loaded: true });
+                const result = await fetch("http://localhost:8080/api/sequelize/pagina");
+                const data = await result.json();
+                setData(data);
+              }
+              catch(err){
+                console.err(`No data found: ${err}`);
+              }   
+            }
+        fetchData();
+    }, [])
 
-           // console.log(data);
-
-           localStorage.setItem("images", JSON.stringify(data));
-        } catch (err) {
-            setTweetsData(function setState(prevState) {
-                return { ...prevState, loading: true, loaded: false };
-            });
-
-            console.error(err);
-        }
-
-    }
-
-    useEffect(function insideEffect() {
-        const savedImages = localStorage.getItem("images");
-        const parsedImages = savedImages ? JSON.parse(savedImages) : {};
-
-        if(Object.keys(parsedImages).length !==0){
-            setTweetsData({data:parsedImages, loaded:true, loading:false});
-        } else if (!TweetsData.loaded) fetchTweets();
-    }, [TweetsData.loaded]);
 
     return <Fragment>
-        {TweetsData.loading && <CircularProgress />}
-        {TweetsData.loaded && TweetsData.data.images.map(function renderImage(image) {
-            return (
-                <h1 key ={image.id}>
-                <Link to={`/photos/${image.id}`} 
-                state={{
-                    imageUrl: image.url,
-                }}
-                >{`Image ${image.id}`}
-             
-                </Link>
-                </h1>
-            )
-        })}
+      {
+          data.map(x => <div>
+             <p> {x.PageId}</p>
+             <p>Name: {x.Title}</p>
+             <p> {x.Description}</p>
+             <p>Followers: {x.Followers}</p>
+           
+          </div>)
+
+          
+}
+<Button
+startIcon = {<InfoIcon />} color ="primary" size = "small"
+onClick={function onClick(){
+navigate("/TAPI");
+}}
+>Extragere date din api</Button>
+         
+      
+      
     </Fragment>;
 }
-export default Tweets;
+export default Pages;

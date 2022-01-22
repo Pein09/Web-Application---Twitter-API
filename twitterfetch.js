@@ -39,7 +39,7 @@ var T = new Twit({
       }
     var params =  {
       q: 'elrond since:2020-12-01',
-      count: 50 }
+      count: 5 }
 
     //tweeturi recente despre elrond
     T.get('search/tweets', params, gotData);

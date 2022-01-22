@@ -12,6 +12,12 @@ router.route("/sequelize/pagina").get(async function getSequelizePagina(_ , resp
     response.status(200).json(result);
 });
 
+router.route("/sequelize/tweets").get(async function getSequelizeTweets(_ , response){
+
+    const result = await sequelizeOperationsAPI.getTweet();
+    response.status(200).json(result);
+});
+
 router.route("/sequelize/pagina")
 .post(async function createPagina({body} , response){
     try{ 
