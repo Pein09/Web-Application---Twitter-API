@@ -2,7 +2,7 @@
 Aplicatie de monitorizare a apariției unei firme pe Twitter (cu Twitter API)
 
 
-Mihai Lupu 22.01.2022: De specificat ca, in conformitate cu cele enuntate si in video, cand am dat azi push pt frontend, mi-a pus totul din nou pe un master branch, sens in care este posibil sa observati modificari in orele la care s-a facut commitul. A fost doar o greseala personala si va rog sa scuzati 
+Mihai Lupu 22.01.2022: De specificat ca, in conformitate cu cele enuntate si in video, cand am dat azi push pt frontend, mi-a pus totul din nou pe un master branch, sens in care este posibil sa observati modificari in orele la care s-a facut commitul. A fost doar o greseala personala si va rog sa scuzati. De asemenea, de-a lungul zilei de azi mi-ati aparut contribuitor iar acum cand am postat totul la final, in dreapta nu imi mai apareati, dar daca dau la setting collaborators, va gasesc acolo pt repositoryul acesta. In cazul in care nu vedeti repoul, voi depune deligentele necesare pentru remediere cu celeritate. Multumesc
 
 
 Nume si prenume: Lupu Mihai Radu
